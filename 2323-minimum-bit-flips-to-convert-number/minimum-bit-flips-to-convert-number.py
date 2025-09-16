@@ -2,7 +2,8 @@ class Solution:
     def minBitFlips(self, start: int, goal: int) -> int:
         ans = start ^ goal
         cnt = 0
-        for i in range(31):
-            if ans & (1 << i):
+        while ans > 0:
+            if ans % 2 == 1:
                 cnt += 1
+            ans = ans // 2
         return cnt

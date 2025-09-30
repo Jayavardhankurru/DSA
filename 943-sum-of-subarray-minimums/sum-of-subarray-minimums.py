@@ -1,8 +1,8 @@
 class Solution:
     def NSE(self, arr):
         n = len(arr)
-        stack = []
         nse = [n] * n
+        stack = []
         for i in range(n-1, -1, -1):
             while stack and arr[stack[-1]] >= arr[i]:
                 stack.pop()
@@ -13,8 +13,8 @@ class Solution:
 
     def PSEE(self, arr):
         n = len(arr)
-        stack = []
         psee = [-1] * n
+        stack = []
         for i in range(n):
             while stack and arr[stack[-1]] > arr[i]:
                 stack.pop()
@@ -24,13 +24,13 @@ class Solution:
         return psee
 
     def sumSubarrayMins(self, arr: List[int]) -> int:
-        mod = int(1e9 + 7)
-        total = 0
+        total  = 0
         n = len(arr)
+        mod = int(1e9 + 7)
         nse = self.NSE(arr)
-        pse = self.PSEE(arr)
+        psee = self.PSEE(arr)
         for i in range(n):
-            left = i - pse[i]
+            left = i - psee[i]
             right = nse[i] - i
             total = (total + (right * left * arr[i]) % mod) % mod
         return total

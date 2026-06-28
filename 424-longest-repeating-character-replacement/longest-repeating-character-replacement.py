@@ -8,7 +8,7 @@ class Solution:
         for r in range(n):
             freq[s[r]] = freq.get(s[r], 0) + 1
             max_freq = max(max_freq, freq[s[r]])
-            while (r - l + 1) - max_freq > k:
+            if (r - l + 1) - max_freq > k:
                 freq[s[l]] -= 1
                 l += 1
             max_len = max(max_len, r - l + 1)

@@ -1,15 +1,15 @@
 from queue import LifoQueue
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = LifoQueue()
+        stack = []
         n = len(s)
         for i in range(n):
             if s[i] == "(" or s[i] == "[" or s[i] == "{":
-                stack.put(s[i])
+                stack.append(s[i])
             else:
-                if stack.empty():
+                if not stack:
                     return False
-                char = stack.get()
+                char = stack.pop()
                 if s[i] == ")" and char != "(" or s[i] == "]" and char != "[" or s[i] == "}" and char != "{":
                     return False
-        return stack.empty()
+        return len(stack) == 0

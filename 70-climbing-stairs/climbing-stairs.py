@@ -1,9 +1,11 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        dp = [-1] * (n + 2)
-        dp[0] = 0
-        dp[1] = 1
-        for i in range(2, n + 2):
-            dp[i] = dp[i - 1] + dp[i - 2]
-        return dp[n + 1]
-            
+        if n <= 2:
+            return n
+        prev1 = 1
+        prev2 = 2
+        for i in range(3, n + 1):
+            curr = prev1 + prev2
+            prev1 = prev2
+            prev2 = curr
+        return prev2
